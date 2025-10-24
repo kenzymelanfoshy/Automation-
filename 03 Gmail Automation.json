@@ -1,0 +1,68 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "39282aef-f69a-4472-bfe8-91f33cf3f1e7",
+      "name": "When chat message received",
+      "webhookId": "a2bce24c-830c-4e46-9623-daa9d4125e02"
+    },
+    {
+      "parameters": {
+        "sendTo": "Kenzyelanfoshy5@gmail.com",
+        "subject": "Hello ",
+        "emailType": "text",
+        "message": "={{ $json.chatInput }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "9f07c885-eead-4eee-96f2-664c374a84cb",
+      "name": "Send a message",
+      "webhookId": "5c5dfc19-66e2-4a29-b04e-8f2347918d0a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yCsVLC13MyoLSKGj",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e995bf5f-2532-48bf-8c5b-ea9f865124cf",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5385a99b1de47bfe80bcbf3ec618e7c8ed0f38b1ed2bea1a6550b11472476533"
+  },
+  "id": "roy2e4pk19FAScuO",
+  "tags": []
+}

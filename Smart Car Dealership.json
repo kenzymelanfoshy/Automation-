@@ -1,0 +1,154 @@
+{
+  "name": "Smart Car Dealership",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "e79073e9-de75-4d1b-a8a3-7281610123fa",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "32c600d4-275b-4875-ba62-05cb7d44a0f1",
+      "name": "Webhook",
+      "webhookId": "e79073e9-de75-4d1b-a8a3-7281610123fa"
+    },
+    {
+      "parameters": {
+        "sendTo": "Kenzyelanfoshy5@gmail.com",
+        "subject": "Hello User ",
+        "emailType": "text",
+        "message": "=This is the car that have been sell today, here's the details: \nCar Type:{{ $json.body.car }}\nPrice:{{ $json.body.price }}\nBuyer:{{ $json.body.Buyer }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        272,
+        -16
+      ],
+      "id": "9f4ed6ba-fdf5-49ce-bcd2-4c44bdb95079",
+      "name": "Send a message",
+      "webhookId": "e916009d-2aa7-4483-98b8-c4c6bf20e4c3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yCsVLC13MyoLSKGj",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1oq9sNIhTU5ejHT_mk4f_PLVyR17MyhY2Fq90XpFdfa4",
+          "mode": "list",
+          "cachedResultName": "Test03",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oq9sNIhTU5ejHT_mk4f_PLVyR17MyhY2Fq90XpFdfa4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oq9sNIhTU5ejHT_mk4f_PLVyR17MyhY2Fq90XpFdfa4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.body.Buyer }}",
+            "Price": "={{ $json.body.price }}",
+            "Type ": "={{ $json.body.car }}"
+          },
+          "matchingColumns": [
+            "Message"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Price",
+              "displayName": "Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        272,
+        176
+      ],
+      "id": "852c446e-9ccf-4707-8bb5-739a161baf24",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kI3bbTEge6yzmDoa",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fee8ab1f-f4bb-4a68-8f1f-6fae3c5ed947",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5385a99b1de47bfe80bcbf3ec618e7c8ed0f38b1ed2bea1a6550b11472476533"
+  },
+  "id": "kXA68nwD7gCTtRXU",
+  "tags": []
+}
